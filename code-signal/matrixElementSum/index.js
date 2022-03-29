@@ -46,6 +46,7 @@ Guaranteed constraints:
 
 The total price of all the rooms that are suitable for the CodeBots to live in.
 */
+
 function solution(matrix) {
   let totalSum = 0;
   let roomsBelowGhosts = [];
