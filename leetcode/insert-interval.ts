@@ -1,22 +1,23 @@
 function insert(intervals: number[][], newInterval: number[]): number[][] {
-  const result: number[][] = [];
-  // loop through the intervals array
+  const newArray: number[][] = [];
+  // loop through intervals
   for (let i = 0; i < intervals.length; i++) {
-    // check if newInterval comes BEFORE the current array element
+    // check if newInterval goes to the left of the intervals[i]
     if (newInterval[1] < intervals[i][0]) {
-      result.push(newInterval);
-      result.push(...intervals.slice(i));
-      return result;
+      newArray.push(newInterval);
+      newArray.push(...intervals.slice(i));
+      return newArray;
     }
-    // check if newInterval comes AFTER the current array element
+    // check else if newInterval goes to the right of intervals[i]
     else if (newInterval[0] > intervals[i][1]) {
-      result.push(intervals[i]);
+      newArray.push(intervals[i]);
     }
-    // reassign newInterval with a new interval that encompasses the overlapping intervals
+    // else, newInterval is overlapping with intervals[i]
+    // merge the overlapping intervals
     else {
-      newInterval = [Math.min(newInterval[0], intervals[i][0]), Math.max(newInterval[1], intervals[i][1])];
+      newInterval = ([Math.min(newInterval[0], intervals[i][0]), Math.max(newInterval[1], intervals[i][1])]);
     }
   }
-  result.push(newInterval);
-  return result;
+  newArray.push(newInterval);
+  return newArray;
 };
